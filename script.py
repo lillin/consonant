@@ -1,5 +1,7 @@
 import re
 
+file = open('zdf-win.txt', 'r')
+
 
 def find_words(a, b, text, c=''):
 
@@ -8,20 +10,14 @@ def find_words(a, b, text, c=''):
         'b': b,
         'c': c
     }
-    text = [x.lower() for x in text]
+
     results = []
 
-    for string in text:
-        if re.findall(pattern, string):
-            results.append(string)
+    for line in text:
+        if re.findall(pattern, line):
+            results.append(line.replace('\n', ''))
 
     return results
 
 
-test_voc_1 = ["вампир", "ампир", "выпь", "сыпь", "гроздь", "трость", "вплоть", "вплавь", "рясно", "впрок", "амбидекстер",
-              'вопос', 'вопрос', "провоп", "вмапир"]
-
-test_voc_2 = ["пила", "площадь", "плакать", "поле", "оплеуха", "ополчение", "половина", "прямо", "плитка", "плпо", "эпнл",
-              "лпок", "опемле"]
-
-print(find_words("п", "л", test_voc_2, "м"))
+file.close()
